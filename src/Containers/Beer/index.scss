@@ -1,0 +1,35 @@
+.forms-buttons{
+    border: 3px solid lightblue;
+    height: 65px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.list-container{
+    border: 3px solid lightblue;
+    height: auto;
+    padding: 10px;
+}
+.search-form-wrapper{
+    input#search-field {
+        padding: 5px;
+        border: 2px solid black;
+        border-radius: 10px 0 0 10px;
+    }
+    button {
+        padding: 5px;
+        border: 2px solid black;
+        border-left: none;
+        border-radius: 0 10px 10px 0;
+    }
+}
+
+.sort-button{
+    padding: 5px;
+    border-radius: 5px; 
+}
+
+@media screen and (min-width:320px) and (max-width:991px){
+    .forms-buttons{
+        border: none;
+    }
+  }

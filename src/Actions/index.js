@@ -1,22 +1,28 @@
 import  Apis  from '../Configs/Apis';
-import { ajax } from '../Utils'
+import { ajax,search,sortData } from '../Utils'
 
-export const getData = (path, props) => {
-        let url = `${Apis.HN_BASE_API}${path}.json`,
-        page = path.split('/')[1];
+export const getData = (props) => {
+        let url = `${Apis.HN_BASE_API}`;
         ajax(url).
         then(data => {
-            console.log(page)
-            switch(page){
-                case 'newest':
-                    props.dispatch({ type: "FETCH_NEWEST_DATA_SUCCESS", payload: data })
-                    break;
-                case 'news':  
-                    props.dispatch({ type: "FETCH_NEWS_DATA_SUCCESS", payload: data })
-                    break;  
-                default: 
-                    console.log('error')    
-            }
+            props.dispatch({ type: "FETCH_BEER_DATA_SUCCESS", payload: data })
         }
-        );
+    );
   };
+
+export const searchBeer = (props,text,BeerArray) => {
+    let data = search(text,BeerArray)
+    if(data.length > 0){
+        props.dispatch({type: "SEARCH_BEER_DATA_SUCCESS", payload: data})
+    }
+}
+
+export const sortRepoPage = (BeerArray, props, flag) => {
+    let data = sortData(BeerArray,flag);
+
+    if(data.length > 0 && flag === "inc"){
+        props.dispatch({type: "SORT_BEER_INC_DATA_SUCCESS", payload: data})
+    }else if(data.length > 0 && flag === "dec"){
+        props.dispatch({type: "SORT_BEER_DEC_DATA_SUCCESS", payload: data})
+    }
+}
